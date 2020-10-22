@@ -12,6 +12,8 @@ header{
     text-align: center;
 
 }
-.highlight{
-    background-color: blue;
+.active{
+    color: red;
+    font-weight: bold;
+    font-size: 18px;
 }

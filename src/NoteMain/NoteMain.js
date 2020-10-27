@@ -3,6 +3,13 @@ import Note from '../Note/Note';
 import NotefulContext from '../NotefulContext';
 
 class NoteMain extends React.Component {
+    static defaultProps = {
+        match: {
+            params: {
+                noteId: ''
+            }
+        }
+    }
     onDeleteNote = () => {
         this.props.history.push('/')
     }

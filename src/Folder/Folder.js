@@ -2,12 +2,21 @@ import React from 'react';
 import {NavLink} from 'react-router-dom';
 import PropTypes from 'prop-types';
 
-function Folder(props) {
+class Folder extends React.Component{
+static defaultProps = {
+    folder: {
+        name: '',
+        id: ''
+    }
+}
+    render(){
     return(
-        <NavLink to={`/folder/${props.folder.id}`} activeClassName='active'>
-            <h3>{props.folder.name}</h3>          
+        <NavLink to={`/folder/${this.props.folder.id}`} activeClassName='active'>
+            <h3>{this.props.folder.name}</h3>          
         </NavLink>
     ) 
+}
+    
 }
 Folder.propTypes = {
     folder: PropTypes.shape({

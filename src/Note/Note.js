@@ -7,7 +7,14 @@ import PropTypes from 'prop-types';
 class Note extends Component {
     static defaultProps ={
         updateState: () => {},
-        onDeleteNote: () => {}
+        onDeleteNote: () => {},
+        note: {
+            id: '',
+            name: '',
+            modified: '',
+            content: '',
+            folderId: ''
+        }
       }
     static contextType=NotefulContext;
     
@@ -33,7 +40,6 @@ class Note extends Component {
     
     render(){
         const modified = new Date(this.props.note.modified);
-        console.log(modified);
     return(
         <div className='note'>
             <Link to={`/note/${this.props.note.id}`}>

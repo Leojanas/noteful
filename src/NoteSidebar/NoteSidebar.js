@@ -5,13 +5,30 @@ import {Link} from 'react-router-dom';
 
 
 class NoteSidebar extends Component {
+    static defaultProps = {
+        match: {
+            params: {
+                noteId: ''
+            }
+        },
+        history: {
+            goBack: () => {}
+        }
+
+    }
 
     render(){
         const noteId = encodeURI(this.props.match.params.noteId);
         const findFolder = (notes, noteId, folders) => {
            const note = notes.find(note => note.id === noteId)
-           const folder = folders.find(folder => folder.id === note.folderId)
+           if (note){
+            const folder = folders.find(folder => folder.id === note.folderId)
            return folder
+           }
+           return {
+               name: '',
+               id: ''
+           }
         }
             
         

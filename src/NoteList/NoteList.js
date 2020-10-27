@@ -2,9 +2,17 @@ import React, {Component} from 'react';
 import Note from '../Note/Note';
 import NotefulContext from '../NotefulContext';
 import {Link} from 'react-router-dom';
-import NoteError from '../NoteError';
+import NoteError from '../NoteError/NoteError';
 
 class NoteList extends Component {
+    static defaultProps = {
+        match: {
+            params: {
+                folderId: ''
+            }
+        }
+    }
+
     render(){
         const findNotesForFolder = (notes, folderId) => (
             (!folderId)

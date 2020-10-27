@@ -1,11 +1,13 @@
 import React, {Component} from 'react';
 import {Route, Link} from 'react-router-dom';
-import NoteList from './NoteList';
-import FolderList from './FolderList';
-import NoteMain from './NoteMain';
-import NoteSidebar from './NoteSidebar';
+import NoteList from './NoteList/NoteList';
+import FolderList from './FolderList/FolderList';
+import NoteMain from './NoteMain/NoteMain';
+import NoteSidebar from './NoteSidebar/NoteSidebar';
 import NotefulContext from './NotefulContext';
 import './App.css';
+import AddFolder from './AddFolder/AddFolder';
+import AddNote from './AddNote/AddNote';
 
 class App extends Component {
   constructor(props){
@@ -39,9 +41,20 @@ class App extends Component {
   }
 
   handleDeleteNote = (noteId) => {
-    
     this.setState({
       notes: this.state.notes.filter(note => note.id !== noteId),
+    })
+  }
+
+  handleAddFolder = (folder) => {
+    this.setState({
+      folders: this.state.folders.push(folder)
+    })
+  }
+
+  handleAddNote = (note) => {
+    this.setState({
+      notes: this.state.notes.push(note)
     })
   }
 
@@ -50,6 +63,8 @@ class App extends Component {
       folders: this.state.folders,
       notes: this.state.notes,
       deleteNote: this.handleDeleteNote,
+      addFolder: this.handleAddFolder,
+      addNote: this.handleAddNote,
     } 
     return (
       <main className='App'>
@@ -61,7 +76,7 @@ class App extends Component {
           </header>
           <div className='container'>
             <section className='sidebar' key='sidebar'>
-              {['/','/folder/:folderId'].map(path => (
+              {['/','/folder/:folderId','/addFolder','/addNote'].map(path => (
                 <Route 
                   exact
                   key={path}
@@ -87,6 +102,14 @@ class App extends Component {
               <Route
                 path='/note/:noteId'
                 component={NoteMain}
+              />
+              <Route
+                path='/addFolder'
+                component={AddFolder}
+              />
+              <Route 
+                path='/addNote'
+                component={AddNote}
               />
             </section>
           </div>

@@ -1,6 +1,6 @@
 import React from 'react';
-import Note from './Note';
-import NotefulContext from './NotefulContext';
+import Note from '../Note/Note';
+import NotefulContext from '../NotefulContext';
 
 class NoteMain extends React.Component {
     onDeleteNote = () => {
@@ -11,7 +11,7 @@ class NoteMain extends React.Component {
         const findNote = (notes, noteId) => (
             notes.find(note => note.id === noteId)
         );
-        const noteId = this.props.match.params.noteId;
+        const noteId = encodeURI(this.props.match.params.noteId);
         
         return(
            <div>

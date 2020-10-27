@@ -1,10 +1,13 @@
 import React, {Component} from 'react';
 import {Link} from 'react-router-dom';
-import NotefulContext from './NotefulContext';
+import NotefulContext from '../NotefulContext';
+import PropTypes from 'prop-types';
+//import './Note.css';
 
 class Note extends Component {
     static defaultProps ={
         updateState: () => {},
+        onDeleteNote: () => {}
       }
     static contextType=NotefulContext;
     
@@ -29,13 +32,14 @@ class Note extends Component {
         }
     
     render(){
-        
+        const modified = new Date(this.props.note.modified);
+        console.log(modified);
     return(
         <div className='note'>
             <Link to={`/note/${this.props.note.id}`}>
                 <h3>{this.props.note.name}</h3>
             </Link>
-            <p>Modified on: {this.props.note.modified}</p>
+            <p>Modified on: {modified.toString()}</p>
             <NotefulContext.Consumer>
                 {(value) => {
                     return <button onClick={this.handleDeleteNote}>Delete Note</button>
@@ -45,6 +49,16 @@ class Note extends Component {
   
     )
  }
+}
+
+Note.propTypes = {
+    note: PropTypes.shape({
+        id: PropTypes.string.isRequired,
+        name: PropTypes.string.isRequired,
+        folderId: PropTypes.string.isRequired,
+        content: PropTypes.string,
+        modified: PropTypes.string
+    })
 }
 
 export default Note;

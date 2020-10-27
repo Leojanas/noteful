@@ -1,5 +1,4 @@
 import React from 'react';
-import './NoteError.css';
 
 export default class NoteError extends React.Component{
     constructor(props) {

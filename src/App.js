@@ -28,6 +28,9 @@ class App extends Component {
 
   }
   componentDidMount(){
+    this.getAllNotesAndFolders();
+  }
+  getAllNotesAndFolders() {
     Promise.all([
       fetch('http://localhost:9090/folders'),
       fetch('http://localhost:9090/notes')
@@ -47,15 +50,11 @@ class App extends Component {
   }
 
   handleAddFolder = (folder) => {
-    this.setState({
-      folders: this.state.folders.push(folder)
-    })
+    this.getAllNotesAndFolders();
   }
 
   handleAddNote = (note) => {
-    this.setState({
-      notes: this.state.notes.push(note)
-    })
+    this.getAllNotesAndFolders();
   }
 
   render(){

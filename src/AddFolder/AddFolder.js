@@ -6,7 +6,6 @@ export default class AddFolder extends Component {
     handleAddFolder = (e) => {
         e.preventDefault();
         const folder = {
-            id: encodeURI(e.target.name.value),
             name: e.target.name.value,
         }
         fetch(`http://localhost:9090/folders`, {
@@ -23,7 +22,7 @@ export default class AddFolder extends Component {
             return response.json()
         }).then(() => {
             this.context.addFolder(folder);
-            //this.props.history.push('/')
+            this.props.history.push('/')
 
         })
     }
@@ -32,7 +31,7 @@ export default class AddFolder extends Component {
             <form onSubmit={(e) => this.handleAddFolder(e)}>
                <h2>Add Folder:</h2>
                <label htmlFor="name">Folder Name: </label>
-               <input id="name" name="name" />
+               <input required id="name" name="name" />
                <button type="submit">Add</button> 
             </form>
         )

@@ -12,7 +12,7 @@ static defaultProps = {
     render(){
     return(
         <NavLink to={`/folder/${this.props.folder.id}`} activeClassName='active'>
-            <h3>{this.props.folder.name}</h3>          
+            <h2>{this.props.folder.name}</h2>          
         </NavLink>
     ) 
 }

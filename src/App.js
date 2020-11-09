@@ -8,6 +8,7 @@ import NotefulContext from './NotefulContext';
 import './App.css';
 import AddFolder from './AddFolder/AddFolder';
 import AddNote from './AddNote/AddNote';
+import NoteError from './NoteError/NoteError';
 
 class App extends Component {
   constructor(props){
@@ -15,21 +16,22 @@ class App extends Component {
     this.state = {
       folders: [],
       notes: []
-      }
     }
+  }
     
   handleUpdateState(response) {
-      const folders = response[0];
-      const notes = response[1];
-      this.setState({
-        folders: folders,
-        notes: notes
-      })
-
+    const folders = response[0];
+    const notes = response[1];
+    this.setState({
+      folders: folders,
+      notes: notes
+    })
   }
+
   componentDidMount(){
     this.getAllNotesAndFolders();
   }
+  
   getAllNotesAndFolders() {
     Promise.all([
       fetch('http://localhost:9090/folders'),
@@ -66,6 +68,7 @@ class App extends Component {
       addNote: this.handleAddNote,
     } 
     return (
+      <NoteError>
       <main className='App'>
         <NotefulContext.Provider value={contextValue}>
           <header>
@@ -113,7 +116,8 @@ class App extends Component {
             </section>
           </div>
         </NotefulContext.Provider>
-      </main>
+      </main>     
+      </NoteError>
     )
   }
 }

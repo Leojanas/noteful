@@ -25,6 +25,9 @@ export default class AddFolder extends Component {
             this.props.history.push('/')
 
         })
+        .catch((e)=>{
+            window.alert('There was an error adding the folder.') 
+        })
     }
     render(){
         return(
@@ -38,3 +41,5 @@ export default class AddFolder extends Component {
     }
 
 }
+
+//add propTypes here

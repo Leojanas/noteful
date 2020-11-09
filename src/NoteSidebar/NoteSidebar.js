@@ -14,7 +14,6 @@ class NoteSidebar extends Component {
         history: {
             goBack: () => {}
         }
-
     }
 
     render(){

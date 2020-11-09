@@ -15,9 +15,9 @@ export default class NoteError extends React.Component{
     render() {
         if (this.state.hasError) {      
             return (
-              <h2>Could not display notes. </h2>
+              <h2>Something went wrong. </h2>
             );
           }
-          return this.props.children;
+        return this.props.children;
     }
 }

@@ -3,7 +3,7 @@ import Folder from '../Folder/Folder';
 import NotefulContext from '../NotefulContext';
 import {Link} from 'react-router-dom';
 
-function FolderList(props) {
+function FolderList() {
     return(
         <NotefulContext.Consumer>
             {(value) => {

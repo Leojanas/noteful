@@ -5,13 +5,13 @@ import {Link} from 'react-router-dom';
 import NoteError from '../NoteError/NoteError';
 
 class NoteList extends Component {
-    static defaultProps = {
-        match: {
-            params: {
-                folderId: ''
-            }
-        }
+  static defaultProps = {
+    match: {
+      params: {
+        folderId: ''
+      }
     }
+  }
 
     render(){
         const findNotesForFolder = (notes, folderId) => (
@@ -19,7 +19,6 @@ class NoteList extends Component {
             ? notes
             : notes.filter(note => note.folderId === folderId)
         )
-    
         return(
             <NotefulContext.Consumer>
                 {(value) => {
@@ -30,28 +29,23 @@ class NoteList extends Component {
                             if (folderId){
                                 if (note.folderId === folderId){
                                     return(
-                                        <NoteError key={note.id}>
-                                            <Note 
-                                                key={note.id}
-                                                note={note}
-                                            />
-                                        </NoteError>
+                                        <Note 
+                                            key={note.id}
+                                            note={note}
+                                        />
                                     )
                                 }
                             }
                             return(
-                                <NoteError key={note.id}>
-                                    <Note 
-                                        key={note.id}
-                                        note={note}
-                                    />
-                                </NoteError>  
+                                <Note 
+                                    key={note.id}
+                                    note={note}
+                                />
                             )
                         })}
                         <Link to='/addNote'>Add Note</Link>
                         </>
                     )
-    
                 }}
             </NotefulContext.Consumer>
         )

@@ -7,15 +7,14 @@ export default class AddFolder extends Component {
     handleAddFolder = (e) => {
         e.preventDefault();
         const folder = {
-            name: e.target.name.value,
+            folder_name: e.target.name.value,
         }
-        fetch(`http://localhost:9090/folders`, {
+        fetch(`http://localhost:8000/api/folders`, {
             method: 'POST',
             headers: {
                 'content-type': 'application/json'
             },
             body: JSON.stringify(folder)
-        
         }).then(response => {
             if(!response.ok){
                 return response.json().then(e => Promise.reject(e))

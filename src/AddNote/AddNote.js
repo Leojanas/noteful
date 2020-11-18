@@ -8,15 +8,15 @@ export default class AddNote extends Component {
         e.preventDefault();
         const modified = new Date();
         const folder = this.context.folders.find(folder => {
-            return folder.name === e.target.folder.value
+            return folder.folder_name === e.target.folder.value
         })
         const note = {
-            name: e.target.name.value,
+            note_name: e.target.name.value,
             modified: modified,
-            folderId: folder.id,
+            folder_id: folder.id,
             content: e.target.content.value, 
         }
-        fetch(`http://localhost:9090/notes`, {
+        fetch(`http://localhost:8000/api/notes`, {
             method: 'POST',
             headers: {
                 'content-type': 'application/json'
@@ -47,7 +47,7 @@ export default class AddNote extends Component {
                 <select required name="folder" id="folder">
                     {this.context.folders.map(folder => {
                         return (
-                            <option name={folder.name} id={folder.name} key={folder.id}>{folder.name}</option>
+                            <option name={folder.folder_name} id={folder.folder_name} key={folder.id}>{folder.folder_name}</option>
                         )
                     })}
                 </select>

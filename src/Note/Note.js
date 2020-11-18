@@ -9,17 +9,17 @@ class Note extends Component {
         onDeleteNote: () => {},
         note: {
             id: '',
-            name: '',
+            note_name: '',
             modified: '',
             content: '',
-            folderId: ''
+            folder_id: ''
         }
       }
     static contextType=NotefulContext;
     
     handleDeleteNote = () => {
         const noteId = this.props.note.id;
-        fetch(`http://localhost:9090/notes/${noteId}`, {
+        fetch(`http://localhost:8000/api/notes/${noteId}`, {
             method: 'DELETE',
             headers: {
                 'content-type': 'application/json'
@@ -29,20 +29,17 @@ class Note extends Component {
             if(!response.ok){
                 return(response.json().then(e => Promise.reject(e))
                 )}
-            return response.json()
+                this.context.deleteNote(this.props.note.id);
+                this.props.onDeleteNote();
         })
-        .then(() => {
-            this.context.deleteNote(this.props.note.id);
-            this.props.onDeleteNote();
-        })
-        }
+    }
     
     render(){
         const modified = new Date(this.props.note.modified);
     return(
         <div className='note'>
             <Link to={`/note/${this.props.note.id}`}>
-                <h3>{this.props.note.name}</h3>
+                <h3>{this.props.note.note_name}</h3>
             </Link>
             <p>Modified on: {modified.toString()}</p>
             <NotefulContext.Consumer>
@@ -58,9 +55,9 @@ class Note extends Component {
 
 Note.propTypes = {
     note: PropTypes.shape({
-        id: PropTypes.string.isRequired,
-        name: PropTypes.string.isRequired,
-        folderId: PropTypes.string.isRequired,
+        id: PropTypes.number.isRequired,
+        note_name: PropTypes.string.isRequired,
+        folder_id: PropTypes.number.isRequired,
         content: PropTypes.string,
         modified: PropTypes.string
     })

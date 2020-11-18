@@ -13,7 +13,7 @@ class Folder extends React.Component{
     render(){
         return(
             <NavLink to={`/folder/${this.props.folder.id}`} activeClassName='active'>
-                <h2>{this.props.folder.name}</h2>          
+                <h2>{this.props.folder.folder_name}</h2>          
             </NavLink>
         ) 
     }  
@@ -21,8 +21,8 @@ class Folder extends React.Component{
 
 Folder.propTypes = {
     folder: PropTypes.shape({
-        id: PropTypes.string.isRequired,
-        name: PropTypes.string.isRequired
+        id: PropTypes.number.isRequired,
+        folder_name: PropTypes.string.isRequired
     })
 }
 

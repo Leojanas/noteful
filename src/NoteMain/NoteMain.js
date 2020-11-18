@@ -18,7 +18,7 @@ class NoteMain extends React.Component {
         const findNote = (notes, noteId) => (
             notes.find(note => note.id === noteId)
         );
-        const noteId = encodeURI(this.props.match.params.noteId);
+        const noteId = parseInt(this.props.match.params.noteId);
         
         return(
            <div>

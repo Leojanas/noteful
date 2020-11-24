@@ -16,7 +16,7 @@ export default class AddNote extends Component {
             folder_id: folder.id,
             content: e.target.content.value, 
         }
-        fetch(`http://localhost:8000/api/notes`, {
+        fetch(`https://calm-dawn-64511.herokuapp.com/api/notes`, {
             method: 'POST',
             headers: {
                 'content-type': 'application/json'

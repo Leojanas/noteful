@@ -9,7 +9,7 @@ export default class AddFolder extends Component {
         const folder = {
             folder_name: e.target.name.value,
         }
-        fetch(`http://localhost:8000/api/folders`, {
+        fetch(`https://calm-dawn-64511.herokuapp.com/api/folders`, {
             method: 'POST',
             headers: {
                 'content-type': 'application/json'

@@ -19,7 +19,7 @@ class Note extends Component {
     
     handleDeleteNote = () => {
         const noteId = this.props.note.id;
-        fetch(`http://localhost:8000/api/notes/${noteId}`, {
+        fetch(`https://calm-dawn-64511.herokuapp.com/api/notes/${noteId}`, {
             method: 'DELETE',
             headers: {
                 'content-type': 'application/json'

@@ -34,10 +34,10 @@ class App extends Component {
   
   getAllNotesAndFolders() {
     Promise.all([
-      fetch('http://localhost:8000/api/folders', {
+      fetch('https://calm-dawn-64511.herokuapp.com/api/folders', {
         method: 'GET'
       }),
-      fetch('http://localhost:8000/api/notes', {
+      fetch('https://calm-dawn-64511.herokuapp.com/api/notes', {
         method: 'GET'
       })
     ])
